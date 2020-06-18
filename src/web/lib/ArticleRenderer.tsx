@@ -14,6 +14,7 @@ import { TableBlockComponent } from '@root/src/web/components/elements/TableBloc
 import { TextBlockComponent } from '@root/src/web/components/elements/TextBlockComponent';
 import { TweetBlockComponent } from '@root/src/web/components/elements/TweetBlockComponent';
 import { VimeoBlockComponent } from '@root/src/web/components/elements/VimeoBlockComponent';
+import { FacebookVideoBlockComponent } from '@root/src/web/components/elements/FacebookVideoBlockComponent';
 import { YoutubeBlockComponent } from '@root/src/web/components/elements/YoutubeBlockComponent';
 
 import { ExplainerAtom } from '@guardian/atoms-rendering';
@@ -143,6 +144,20 @@ export const ArticleRenderer: React.FC<{
                             designType={designType}
                         />
                     );
+                case 'model.dotcomrendering.pageElements.VideoFacebookBlockElement':
+                    return (
+                        <FacebookVideoBlockComponent
+                            pillar={pillar}
+                            url={element.url}
+                            height={element.height}
+                            width={element.width}
+                            caption={element.caption}
+                            credit={element.credit}
+                            title={element.title}
+                            display={display}
+                            designType={designType}
+                        />
+                    );
                 case 'model.dotcomrendering.pageElements.YoutubeBlockElement':
                     return (
                         <YoutubeBlockComponent
@@ -174,7 +189,6 @@ export const ArticleRenderer: React.FC<{
                 case 'model.dotcomrendering.pageElements.QABlockElement':
                 case 'model.dotcomrendering.pageElements.TimelineBlockElement':
                 case 'model.dotcomrendering.pageElements.VideoBlockElement':
-                case 'model.dotcomrendering.pageElements.VideoFacebookBlockElement':
                 case 'model.dotcomrendering.pageElements.VideoYoutubeBlockElement':
                     return null;
             }

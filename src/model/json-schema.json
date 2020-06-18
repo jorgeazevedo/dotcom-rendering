@@ -1326,11 +1326,16 @@
                 },
                 "caption": {
                     "type": "string"
+                },
+                "credit": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
                 }
             },
             "required": [
                 "_type",
-                "caption",
                 "height",
                 "url",
                 "width"

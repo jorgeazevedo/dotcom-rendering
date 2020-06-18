@@ -225,7 +225,9 @@ interface VideoFacebookBlockElement {
     url: string;
     height: number;
     width: number;
-    caption: string;
+    caption?: string;
+    credit?: string;
+    title?: string;
 }
 
 interface VideoVimeoBlockElement {
