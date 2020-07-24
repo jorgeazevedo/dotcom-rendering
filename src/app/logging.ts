@@ -3,7 +3,7 @@ import { configure, getLogger, addLayout, shutdown } from 'log4js';
 
 const logLocation =
     process.env.NODE_ENV === 'production'
-        ? `${path.resolve('logs')}/dotcom-rendering.log`
+        ? '/var/log/dotcom-rendering/dotcom-rendering.log'
         : `${path.resolve('logs')}/dotcom-rendering.log`;
 
 const logFields = (logEvent: any): any => {
@@ -58,6 +58,6 @@ if (process.env.NODE_ENV === 'development') {
 export const logger =
     process.env.NODE_ENV === 'development'
         ? getLogger('development')
-        : getLogger();
+        : getLogger('development');
 
 logger.level = 'info';
