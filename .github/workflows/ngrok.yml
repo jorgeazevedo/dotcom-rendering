@@ -16,7 +16,7 @@ jobs:
               run: |
                   npm install -g ngrok
                   NODE_ENV=production node dist/frontend.server.js &
-                  ngrok http 9000 -log=stdout &
+                  ngrok http 9000 -log=stdout > ngrok.log &
                   sleep 30 && tail -f ngrok.log
                   sleep 180
                   
