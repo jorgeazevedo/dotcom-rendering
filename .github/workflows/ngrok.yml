@@ -15,7 +15,9 @@ jobs:
             - name: Ngrok it
               run: |
                   npm install -g ngrok
-                  NODE_ENV=production node dist/frontend.server.js & ngrok http 9000 -log=stdout | awk -F'=' '/https/ {print $8}' | xargs -L 1 curl
+                  NODE_ENV=production node dist/frontend.server.js &
+                  ngrok http 9000 -log=stdout &
+                  tail -f ngrok.log
                   sleep 180
                   
 
