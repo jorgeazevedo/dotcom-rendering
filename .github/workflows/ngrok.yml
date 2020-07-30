@@ -16,4 +16,4 @@ jobs:
               run: |
                   npm install -g ngrok
                   NODE_ENV=production node dist/frontend.server.js &
-                  ngrok http 9000 -log=stdout | grep --line-buffered -o 'https://.*' | xargs -L1 -I{} -t curl -X POST -u ${{ secrets.CREDENTIALS }} https://api.github.com/repos/jorgeazevedo/dotcom-rendering/statuses/${{ github.sha }} -d '{"state":"success", "target_url":"{}", "context":"PR deployment", "description":"Live at ->"}'
+                  ngrok http 9000 -log=stdout | grep --line-buffered -o 'https://.*' | xargs -L1 -I{} -t curl -X POST -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/jorgeazevedo/dotcom-rendering/statuses/${{ github.sha }} -d '{"state":"success", "target_url":"{}", "context":"PR deployment", "description":"Live at ->"}'
