@@ -16,8 +16,4 @@ jobs:
               run: |
                   npm install -g ngrok
                   NODE_ENV=production node dist/frontend.server.js &
-                  ngrok http 9000 -log=stdout > ngrok.log &
-                  sleep 30 && tail -f ngrok.log | grep --line-buffered -o 'url=https:.*' | xargs -L1 echo Hello
-                  sleep 180
-                  
-
+                  ngrok http 9000 -log=stdout  | grep --line-buffered -o 'https://.*' | xargs -L1 echo Hello 
