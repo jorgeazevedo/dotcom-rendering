@@ -2,7 +2,7 @@ name: Ngrok it
 on: [push]
 jobs:
     lhci:
-        name: Ngrok it
+        name: Ngrok
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -12,8 +12,8 @@ jobs:
               with:
                   node-version: 10.15.3
             - run: make build
-            - name: Ngrok it
+            - name: run
               run: |
                   npm install -g ngrok
                   NODE_ENV=production node dist/frontend.server.js &
-                  ngrok http 9000 -log=stdout | grep --line-buffered -o 'https://.*' | xargs -L1 -I{} -t curl -X POST -u ${{ secrets.CREDENTIALS }} https://api.github.com/repos/jorgeazevedo/dotcom-rendering/statuses/${{ github.sha }} -d '{"state":"success", "target_url":"{}", "description":"Public URL"}'
+                  ngrok http 9000 -log=stdout | grep --line-buffered -o 'https://.*' | xargs -L1 -I{} -t curl -X POST -u ${{ secrets.CREDENTIALS }} https://api.github.com/repos/jorgeazevedo/dotcom-rendering/statuses/${{ github.sha }} -d '{"state":"success", "target_url":"{}", "context":"PR deployment", "description":"Live at ->"}'
